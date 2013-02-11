@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="contentbox">
+
+{% for x in _ideas_from_view %}
+	<div id="idea{{x.id}}" class="ideabox">
+		<a href=""><p class="ideatitle">{{x.idea_title}}</p></a>
+		<p> {{x.idea_text}} </p>
+		<!-- include media -->
+	</div>
+	<div class="commentbox">
+		{% for y in _comments_ %}	
+		<div class="commentdiv">
+			<p> {{y.comment_text}} </p>
+		</div>
+		{% endfor %}
+	</div>
+	<form>
+		<input type="text">
+	</form>
+{% endfor %}
+
+</div>
+
+<div class="submitdiv">
+	<h3 class="submittext"> Submit </h3>
+</div>
+
+{% endblock content %}
