@@ -7,7 +7,7 @@ admin.autodiscover()
 
 # And include this URLpattern...
 urlpatterns = patterns('',
-    ('^$', current_datetime),
+    ('^$', index),
     (r'^submit/', submit),
     (r'^latest/', latest),
     (r'^admin/', include(admin.site.urls)),

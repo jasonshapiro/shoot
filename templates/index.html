@@ -4,14 +4,14 @@
 
 <div id="contentbox">
 
-{% for x in _ideas_from_view %}
+{% for x in ideaslist %}
 	<div id="idea{{x.id}}" class="ideabox">
 		<a href=""><p class="ideatitle">{{x.idea_title}}</p></a>
 		<p> {{x.idea_text}} </p>
 		<!-- include media -->
 	</div>
 	<div class="commentbox">
-		{% for y in _comments_ %}	
+		{% for y in commentlist %}	
 		<div class="commentdiv">
 			<p> {{y.comment_text}} </p>
 		</div>

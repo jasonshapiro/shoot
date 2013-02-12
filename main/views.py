@@ -1,7 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
-
-
 from django.shortcuts import render_to_response
+from django.template import RequestContext
 import datetime
 from main.models import *
 
@@ -20,18 +19,16 @@ def latest(request):
     idea = Idea(idea_title=idea_title_form, idea_text=idea_text_form, idea_created=idea_created_form, 
                 idea_last_activity=idea_last_activity_form)
     idea.save()
+
     return HttpResponseRedirect('/')
 
 
-'''
 def index(request):
     
-    ideas = Models.Ideas.sort(recency)[0:4]
+    ideas = Idea.objects.all().order_by('idea_last_activity').reverse()[0:4]
     allcomments = []
     for eachidea in ideas:
-        comments = Models.comments(eachidea.id)
+        comments = Comment.objects.filter(idea=eachidea)
         allcomments = [allcomments,comments]
 
-    return rendertoresponse('/index.html',RequestContext='{ideas:ideas, allcomments:allcomments}')
-
-'''
+    return render_to_response('index.html',context_instance=RequestContext(request, {'ideaslist':ideas, 'commentlist':allcomments}))
