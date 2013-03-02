@@ -11,4 +11,6 @@ urlpatterns = patterns('',
     (r'^submit/', submit),
     (r'^latest/', latest),
     (r'^admin/', include(admin.site.urls)),
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve',
+        {'document_root': '/opt/shoot/static'}),
 )
